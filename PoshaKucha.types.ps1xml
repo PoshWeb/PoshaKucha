@@ -1,0 +1,27 @@
+<!-- Generated with EZOut 2.0.6: Install-Module EZOut or https://github.com/StartAutomating/EZOut -->
+<Types>
+  <Type>
+    <Name>PoshaKucha</Name>
+    <Members>
+      <MemberSet>
+        <Name>PSStandardMembers</Name>
+        <Members>
+          <PropertySet>
+            <Name>DefaultDisplayPropertySet</Name>
+            <ReferencedProperties>
+              <Name>Title</Name>
+              <Name>Author</Name>
+              <Name>RecordingUrl</Name>
+            </ReferencedProperties>
+          </PropertySet>
+        </Members>
+      </MemberSet>
+      <NoteProperty>
+        <Name>DefaultDisplay</Name>
+        <Value>Title
+Author
+RecordingUrl</Value>
+      </NoteProperty>
+    </Members>
+  </Type>
+</Types>
