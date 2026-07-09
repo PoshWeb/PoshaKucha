@@ -47,16 +47,14 @@ function New-PoshaKucha {
     [int]
     $SlideNumber,
 
-    # Any html to display with the PoshaKucha
+    # Any content to display with the PoshaKucha
     # This can be a page fragment, an iframe, or an entire rendered PoshaKucha.
     [Parameter(ValueFromPipelineByPropertyName)]
     [string]
-    $Html
+    $Content
     )
 
-    process {
-        
-        
+    process {                
         $output = [Ordered]@{
             # We creating a new `PoshaKucha`
             PSTypeName='PoshaKucha'
