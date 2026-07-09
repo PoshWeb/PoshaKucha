@@ -16,6 +16,43 @@
           </PropertySet>
         </Members>
       </MemberSet>
+      <ScriptProperty>
+        <Name>Html</Name>
+        <GetScriptBlock>
+                        # If the talk had html that looked like a whole page
+if ($this.Content -match '^[\s\r\n]{0,}&lt;html') {
+    return $this.Content # return it.
+}
+
+# Otherwise, create a part of a page by joining elements
+@(
+    # The title goes in an `&lt;h2&gt;`
+    if ($this.Title) {
+        "&lt;h2&gt;$([Web.HttpUtility]::HtmlEncode($this.Title))&lt;/h2&gt;"
+    }        
+    # The author in an `&lt;h3&gt;`
+    if ($this.Author) {
+        "&lt;h3&gt;By $($this.Author)&lt;/h3&gt;"
+    }
+    # The recording url should be embedded if possible
+    if ($this.RecordingUrl) {
+        # (just call oembed
+        $(
+            try {
+                oembed -Url $this.RecordingUrl -ErrorAction Ignore -MaxHeight 480 -MaxWidth 640
+            } catch {
+                $null
+            }
+        ).Html # and output the `.html`)
+    }
+    # If any custom content was provided
+    if ($this.content) {
+        $this.content # output it
+    }
+) -join [Environment]::NewLine
+
+                    </GetScriptBlock>
+      </ScriptProperty>
       <NoteProperty>
         <Name>DefaultDisplay</Name>
         <Value>Title
